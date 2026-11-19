@@ -25,10 +25,10 @@ on:
         default: capacitor
       android_build:
         description: "Custom Android build command or prebuilt download (optional, then set apk_path)"
-        default: ""
+        default: "npm ci --no-audit --no-fund && npm run build && npx cap sync android && cd android && ./gradlew :app:assembleDebug --build-cache"
       apk_path:
-        description: Path of the .apk produced by android_build
-        default: ""
+        description: Path of the .apk produced by android_build (LC has a Wear module, so name the phone app's)
+        default: android/app/build/outputs/apk/debug/app-debug.apk
       ios_build:
         description: "Custom iOS build command or prebuilt download (optional, then set ios_app_path)"
         default: ""
