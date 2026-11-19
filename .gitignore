@@ -8,3 +8,4 @@ demo-app/ios/
 demo-app/.expo/
 .DS_Store
 __pycache__/
+login.txt
