@@ -10,7 +10,7 @@ The app: Longshore Companion, a timebook for US West Coast longshore workers (IL
 Members log the shifts they work (date, job code, hours, terminal) and see their pay,
 pay periods, stats, hall dispatch info and the ships in port. Your goal as this persona,
 whatever personas.json says: you are a longshore worker. Sign in, look over the
-calendar and Stats, add one shift you worked yesterday, check what it pays, open
+calendar and Stats, add one shift on your day (see below), check what it pays, open
 Ships, then edit your shift and delete it again.
 
 ## Signing in (read this first)
@@ -18,6 +18,10 @@ Ships, then edit your shift and delete it again.
   `cat login.txt`. Never create an account, never use any other e-mail.
 - Never copy the password into a report, a findings file or a screenshot name.
 - If a "pick your home local" sheet appears first, pick Local 23 (Tacoma).
+- Other testers use the same account AT THE SAME TIME. Your shift goes on YOUR day only:
+  N days before today, where N is grace 2, lucia 3, noah 4, mateo 5, anyone else 6.
+  Put your persona id in the shift's notes. A shift you see on any other day is someone
+  else's: leave it alone, and do not report it appearing or vanishing as a bug.
 
 ## Tools (only these)
 Android
