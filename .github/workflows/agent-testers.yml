@@ -104,6 +104,9 @@ jobs:
           path: ~/.npm
           key: npm-android-${{ hashFiles('**/package-lock.json') }}
           restore-keys: npm-android-
+      - name: Prepare LC (gradlew is stored without its executable bit)
+        if: inputs.source_repo != ''
+        run: chmod +x "src/${{ inputs.app_dir }}/android/gradlew" 2>/dev/null || true
       - name: Build APK (any framework, log kept private)
         env:
           APP_DIR: ${{ inputs.source_repo != '' && format('src/{0}', inputs.app_dir) || inputs.app_dir }}
@@ -150,6 +153,15 @@ jobs:
             ~/Library/Caches/CocoaPods
           key: npm-pods-ios-${{ hashFiles('**/package-lock.json') }}
           restore-keys: npm-pods-ios-
+      - name: Prepare LC (widget and watch targets carry bridge sources the App target needs)
+        if: inputs.source_repo != ''
+        working-directory: src/${{ inputs.app_dir }}
+        run: |
+          [ -f ios/scripts/add_widget_target.rb ] || exit 0
+          gem install xcodeproj --no-document >/dev/null
+          export MARKETING_VERSION=1.0.0 CURRENT_PROJECT_VERSION=1
+          ruby ios/scripts/add_widget_target.rb >/dev/null
+          [ -f ios/scripts/add_watch_target.rb ] && ruby ios/scripts/add_watch_target.rb >/dev/null || true
       - name: Build Simulator .app (any framework, arm64, unsigned, log kept private)
         env:
           APP_DIR: ${{ inputs.source_repo != '' && format('src/{0}', inputs.app_dir) || inputs.app_dir }}
