@@ -112,6 +112,8 @@ jobs:
           APP_DIR: ${{ inputs.source_repo != '' && format('src/{0}', inputs.app_dir) || inputs.app_dir }}
           BUILD_COMMAND: ${{ inputs.android_build }}
           ARTIFACT: ${{ inputs.apk_path }}
+          # RevenueCat Test Store key: the SDK configures, nothing can really be bought
+          VITE_REVENUECAT_ANDROID_KEY: ${{ secrets.RC_TEST_STORE_KEY }}
         run: bash scripts/build/android.sh "$APP_DIR" "${{ inputs.framework }}"
       - name: Encrypt APK
         env: { ARTIFACT_PASSPHRASE: "${{ secrets.ARTIFACT_PASSPHRASE }}" }
@@ -167,6 +169,8 @@ jobs:
           APP_DIR: ${{ inputs.source_repo != '' && format('src/{0}', inputs.app_dir) || inputs.app_dir }}
           BUILD_COMMAND: ${{ inputs.ios_build }}
           ARTIFACT: ${{ inputs.ios_app_path }}
+          # RevenueCat Test Store key: the SDK configures, nothing can really be bought
+          VITE_REVENUECAT_IOS_KEY: ${{ secrets.RC_TEST_STORE_KEY }}
           IOS_SCHEME: ${{ vars.IOS_SCHEME }}   # optional repo variable, for projects with several schemes
         run: bash scripts/build/ios.sh "$APP_DIR" "${{ inputs.framework }}"
       - name: Encrypt .app
