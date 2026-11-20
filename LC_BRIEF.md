@@ -17,6 +17,10 @@ Ships, then edit your shift and delete it again.
 - Use ONLY the test account in `login.txt` (line 1 the e-mail, line 2 the password):
   `cat login.txt`. Never create an account, never use any other e-mail.
 - Never copy the password into a report, a findings file or a screenshot name.
+- The keyboard moves the form when it opens. After you tap a field, take a fresh
+  screenshot before the next tap, and move from Email to Password with the
+  keyboard's Next key, not a tap at the old position. Before typing the password,
+  check the Password field has focus: typed into Email it shows in plain text.
 - If a "pick your home local" sheet appears first, pick Local 23 (Tacoma).
 - Other testers use the same account AT THE SAME TIME. Your shift goes on YOUR day only:
   N days before today, where N is grace 2, lucia 3, noah 4, mateo 5, anyone else 6.
