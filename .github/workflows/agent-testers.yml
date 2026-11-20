@@ -169,8 +169,9 @@ jobs:
           APP_DIR: ${{ inputs.source_repo != '' && format('src/{0}', inputs.app_dir) || inputs.app_dir }}
           BUILD_COMMAND: ${{ inputs.ios_build }}
           ARTIFACT: ${{ inputs.ios_app_path }}
-          # RevenueCat Test Store key: the SDK configures, nothing can really be bought
-          VITE_REVENUECAT_IOS_KEY: ${{ secrets.RC_TEST_STORE_KEY }}
+          # No RevenueCat key on iOS: the simulator build is Release, and RevenueCat
+          # closes a Release build that carries a Test Store key ("Wrong API Key").
+          # Without a key iOS runs with purchases unavailable, which is fine here.
           IOS_SCHEME: ${{ vars.IOS_SCHEME }}   # optional repo variable, for projects with several schemes
         run: bash scripts/build/ios.sh "$APP_DIR" "${{ inputs.framework }}"
       - name: Encrypt .app
